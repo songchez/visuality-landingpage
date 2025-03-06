@@ -6,8 +6,14 @@ export default function HeroSection() {
         <h1 className="text-4xl font-semibold text-left">VISUALITY</h1>
       </div>
       <span className="pt-5 max-w-xl">
-        We&apos;re excited to introduce Visuality, offering unfiltered answers
-        with advanced capabilities in reasoning, coding, and visual processing.
+        We&apos;re excited to introduce Visuality, a state-of-the-art service
+        designed to revolutionize architectural design. By harnessing generative
+        image AI, it drastically reduces the time spent on the design process,
+        enabling engineers to focus on their core tasks. Moreover, with its
+        advanced reasoning capabilities, high-quality image generation, and
+        visual processing technologies, Visuality offers unfiltered, clear
+        solutions to complex challenges, paving the way for the future of
+        architectural design.
       </span>
     </div>
   );
