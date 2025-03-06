@@ -5,10 +5,7 @@ type SliderProps = {
   afterSrc: string;
 };
 
-export default function BeforeAfterSlider({
-  beforeSrc,
-  afterSrc,
-}: SliderProps) {
+export default function HeroSection({ beforeSrc, afterSrc }: SliderProps) {
   const containerRef = useRef<HTMLDivElement>(null);
   const [sliderPosition, setSliderPosition] = useState(50);
   const [isDragging, setIsDragging] = useState(false);
@@ -41,7 +38,7 @@ export default function BeforeAfterSlider({
   return (
     <div
       ref={containerRef}
-      className="relative w-full h-full overflow-hidden select-none border border-gray-700"
+      className="relative w-full h-full overflow-hidden select-none border border-gray-700 max-w-5xl"
     >
       {/* 큰 Visuality 타이포그래피 (배경) */}
       <h1 className="absolute text-[10rem] font-bold opacity-20 select-none p-5">
