@@ -77,14 +77,14 @@ export default function Header() {
           <div className="flex items-center gap-4">
             <div className="sm:flex sm:gap-4">
               <Link
-                className="block rounded-md bg-blue-600 px-5 py-2.5 text-sm font-medium text-white transition hover:bg-blue-700"
+                className="block rounded-md bg-blue-900/40 px-5 py-2.5 text-sm font-medium text-white transition hover:bg-blue-800/40"
                 to="/login"
               >
                 Login
               </Link>
 
               <Link
-                className="hidden rounded-md bg-gray-100 px-5 py-2.5 text-sm font-medium text-blue-600 transition hover:text-blue-600/75 sm:block"
+                className="hidden rounded-md bg-white/10 px-5 py-2.5 text-sm font-medium text-blue-200 transition hover:text-blue-300/75 sm:block"
                 to="/register"
               >
                 Register
