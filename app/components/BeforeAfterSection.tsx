@@ -1,19 +1,46 @@
 import { useState, useRef, useEffect, useCallback } from "react";
+import * as motion from "motion/react-client";
 
 type SliderProps = {
-  beforeSrc: string;
-  afterSrc: string;
   setGridSize: React.Dispatch<React.SetStateAction<number>>;
 };
 
-export default function BeforeAfterSection({
-  beforeSrc,
-  afterSrc,
-  setGridSize,
-}: SliderProps) {
+type ImageSet = {
+  before: string;
+  after: string;
+};
+
+const imageSets: ImageSet[] = [
+  {
+    before: "images/beforeAfters/before1.webp",
+    after: "images/beforeAfters/after1.webp",
+  },
+  {
+    before: "images/beforeAfters/before2.webp",
+    after: "images/beforeAfters/after2.webp",
+  },
+  {
+    before: "images/beforeAfters/before3.webp",
+    after: "images/beforeAfters/after3.webp",
+  },
+  {
+    before: "images/beforeAfters/before4.webp",
+    after: "images/beforeAfters/after4.webp",
+  },
+  {
+    before: "images/beforeAfters/before5.webp",
+    after: "images/beforeAfters/after5.webp",
+  },
+];
+
+export default function BeforeAfterCarousel({ setGridSize }: SliderProps) {
   const containerRef = useRef<HTMLDivElement>(null);
   const [sliderPosition, setSliderPosition] = useState(50);
   const [isDragging, setIsDragging] = useState(false);
+  const [currentSlide, setCurrentSlide] = useState(0);
+  const [prevSlide, setPrevSlide] = useState<number | null>(null);
+  // direction: 1이면 다음, -1이면 이전 전환 효과
+  const [direction, setDirection] = useState(1);
   const animationFrameRef = useRef<number | null>(null);
 
   const handleMouseDown = () => setIsDragging(true);
@@ -21,7 +48,7 @@ export default function BeforeAfterSection({
 
   const handleMouseMove = useCallback((e: MouseEvent) => {
     if (!containerRef.current) return;
-    if (animationFrameRef.current !== null) return; // 이미 requestAnimationFrame이 예약된 경우 스킵
+    if (animationFrameRef.current !== null) return;
     animationFrameRef.current = requestAnimationFrame(() => {
       const rect = containerRef.current!.getBoundingClientRect();
       let newPosition = ((e.clientX - rect.left) / rect.width) * 100;
@@ -46,18 +73,69 @@ export default function BeforeAfterSection({
     };
   }, [handleMouseMove, isDragging, setGridSize, sliderPosition]);
 
+  const handlePrev = () => {
+    setDirection(-1);
+    setPrevSlide(currentSlide);
+    setCurrentSlide((prev) => (prev - 1 + imageSets.length) % imageSets.length);
+    setSliderPosition(50);
+  };
+
+  const handleNext = () => {
+    setDirection(1);
+    setPrevSlide(currentSlide);
+    setCurrentSlide((prev) => (prev + 1) % imageSets.length);
+    setSliderPosition(50);
+  };
+
+  // 렌더링할 슬라이드 내용. After 이미지는 clip-path를 사용하여 sliderPosition에 따라 노출 영역을 결정합니다.
+  const renderSlide = (index: number) => (
+    <div className="relative w-full">
+      {/* 배경 타이포그래피 */}
+      <h1 className="absolute text-[6rem] font-bold opacity-40 select-none p-5 bottom-0">
+        VISUALITY AI
+      </h1>
+      {/* Before 이미지 */}
+      <img
+        src={imageSets[index].before}
+        alt="Before"
+        className="w-full h-auto object-cover"
+      />
+      {/* After 이미지 (clip-path 적용) */}
+      <div
+        className="absolute top-0 left-0 w-full h-full overflow-hidden"
+        style={{
+          clipPath: `polygon(0 0, ${sliderPosition}% 0, ${sliderPosition}% 100%, 0 100%)`,
+          transition: isDragging ? "none" : "clip-path 0.1s ease-out",
+        }}
+      >
+        <h1 className="absolute text-[6rem] font-bold opacity-85 select-none p-5 text-black bottom-0">
+          VISUALITY AI
+        </h1>
+        <img
+          src={imageSets[index].after}
+          alt="After"
+          className="w-full h-full object-cover object-left"
+        />
+      </div>
+    </div>
+  );
+
   return (
     <div className="flex w-full justify-center my-10">
-      <div className="w-full h-full flex flex-col justify-center items-center max-w-5xl">
+      <div className="w-full flex flex-col justify-center items-center max-w-5xl">
         <div className="flex justify-center items-center">
-          <button className="border border-transparent hover:border-white/70 rounded-2xl p-1">
+          {/* 이전 슬라이드 버튼 */}
+          <button
+            onClick={handlePrev}
+            className="border border-transparent hover:border-white/70 rounded-2xl p-1"
+          >
             <svg
               xmlns="http://www.w3.org/2000/svg"
               fill="none"
               viewBox="0 0 26 25"
               strokeWidth="3"
               stroke="currentColor"
-              className="size-8"
+              className="w-8 h-8"
             >
               <path
                 strokeLinecap="round"
@@ -67,39 +145,34 @@ export default function BeforeAfterSection({
             </svg>
           </button>
 
-          <div
+          {/* 슬라이드 컨테이너 */}
+          <motion.div
             ref={containerRef}
             className="relative w-full overflow-hidden select-none m-2 rounded-lg"
           >
-            {/* 배경 타이포그래피 */}
-            <h1 className="absolute text-[6rem] font-bold opacity-40 select-none p-5 bottom-0">
-              VISUALITY AI
-            </h1>
-            {/* Before 이미지 */}
-            <img
-              src={beforeSrc}
-              alt="Before"
-              className="w-full h-full object-cover"
-            />
-            {/* After 이미지 (클리핑 처리) */}
-            <div
-              className="absolute top-0 left-0 h-full overflow-hidden"
-              style={{
-                width: `${sliderPosition}%`,
-                transition: isDragging ? "none" : "width 0.1s ease-out",
-              }}
+            {/* 이전 슬라이드 (exit 애니메이션) */}
+            {prevSlide !== null && (
+              <motion.div
+                initial={{ opacity: 1, x: 0, scale: 1 }}
+                animate={{ opacity: 0, x: -direction * 50, scale: 0.95 }}
+                transition={{ duration: 0.4 }}
+                style={{ position: "absolute", width: "100%" }}
+              >
+                {renderSlide(prevSlide)}
+              </motion.div>
+            )}
+            {/* 현재 슬라이드 (enter 애니메이션) */}
+            <motion.div
+              key={currentSlide}
+              initial={{ opacity: 0, x: direction * 50, scale: 0.95 }}
+              animate={{ opacity: 1, x: 0, scale: 1 }}
+              transition={{ duration: 0.4 }}
+              onAnimationComplete={() => setPrevSlide(null)}
+              style={{ position: "relative", width: "100%" }}
             >
-              {/* 오버레이 타이포그래피 */}
-              <h1 className="absolute text-[6rem] text-nowrap font-bold opacity-85 select-none p-5 text-black bottom-0">
-                VISUALITY AI
-              </h1>
-              <img
-                src={afterSrc}
-                alt="After"
-                className="w-full h-full object-cover object-left"
-              />
-            </div>
-            {/* 슬라이더 핸들 */}
+              {renderSlide(currentSlide)}
+            </motion.div>
+            {/* 슬라이더 핸들 (After 이미지 클리핑 조절) */}
             <div
               role="button"
               tabIndex={0}
@@ -110,15 +183,15 @@ export default function BeforeAfterSection({
               }}
               onMouseDown={handleMouseDown}
             >
-              <div className="w-[4px] h-full flex bg-black/80 text-black/80 hover:text-blue-900 active:text-blue-900 hover:bg-blue-900 active:bg-blue-900 opacity-80 cursor-ew-resize">
-                <div className="flex self-center justify-self-center -ml-[22px]">
+              <div className="w-[4px] h-full flex bg-black/60 hover:bg-black active:bg-black opacity-80 cursor-ew-resize">
+                <div className="flex self-center -ml-[22px] text-black/60 hover:text-black active:text-black">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     fill="none"
                     viewBox="0 0 24 24"
                     strokeWidth="3"
                     stroke="currentColor"
-                    className="size-6"
+                    className="w-6 h-6"
                   >
                     <path
                       strokeLinecap="round"
@@ -132,7 +205,7 @@ export default function BeforeAfterSection({
                     viewBox="0 0 24 24"
                     strokeWidth="3"
                     stroke="currentColor"
-                    className="size-6 rotate-180"
+                    className="w-6 h-6 rotate-180"
                   >
                     <path
                       strokeLinecap="round"
@@ -143,15 +216,20 @@ export default function BeforeAfterSection({
                 </div>
               </div>
             </div>
-          </div>
-          <button className="border border-transparent hover:border-white/70 rounded-2xl p-1 flex justify-center items-center">
+          </motion.div>
+
+          {/* 다음 슬라이드 버튼 */}
+          <button
+            onClick={handleNext}
+            className="border border-transparent hover:border-white/70 rounded-2xl p-1 flex justify-center items-center"
+          >
             <svg
               xmlns="http://www.w3.org/2000/svg"
               fill="none"
               viewBox="0 0 26 25"
               strokeWidth="3"
               stroke="currentColor"
-              className="size-8 rotate-180"
+              className="w-8 h-8 rotate-180"
               role="button"
             >
               <path

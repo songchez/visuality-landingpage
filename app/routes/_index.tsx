@@ -26,11 +26,7 @@ export default function Index() {
         <Header />
         {/* Before/After 슬라이더 */}
         <HeroSection />
-        <BeforeAfterSection
-          setGridSize={setGridSize}
-          beforeSrc="/images/before.jpeg"
-          afterSrc="/images/after.png"
-        />
+        <BeforeAfterSection setGridSize={setGridSize} />
         <Divider centerText="Instances" />
         <Divider centerText="Features section" />
         <FeatureSection />
