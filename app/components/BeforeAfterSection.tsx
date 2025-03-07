@@ -39,9 +39,18 @@ export default function BeforeAfterCarousel({ setGridSize }: SliderProps) {
   const [isDragging, setIsDragging] = useState(false);
   const [currentSlide, setCurrentSlide] = useState(0);
   const [prevSlide, setPrevSlide] = useState<number | null>(null);
-  // direction: 1이면 다음, -1이면 이전 전환 효과
-  const [direction, setDirection] = useState(1);
+  const [direction, setDirection] = useState(1); // 1 = next, -1 = prev
   const animationFrameRef = useRef<number | null>(null);
+
+  // 1) Preload images on mount.
+  useEffect(() => {
+    imageSets.forEach(({ before, after }) => {
+      [before, after].forEach((src) => {
+        const img = new Image();
+        img.src = src;
+      });
+    });
+  }, []);
 
   const handleMouseDown = () => setIsDragging(true);
   const handleMouseUp = () => setIsDragging(false);
@@ -49,6 +58,7 @@ export default function BeforeAfterCarousel({ setGridSize }: SliderProps) {
   const handleMouseMove = useCallback((e: MouseEvent) => {
     if (!containerRef.current) return;
     if (animationFrameRef.current !== null) return;
+
     animationFrameRef.current = requestAnimationFrame(() => {
       const rect = containerRef.current!.getBoundingClientRect();
       let newPosition = ((e.clientX - rect.left) / rect.width) * 100;
@@ -87,20 +97,27 @@ export default function BeforeAfterCarousel({ setGridSize }: SliderProps) {
     setSliderPosition(50);
   };
 
-  // 렌더링할 슬라이드 내용. After 이미지는 clip-path를 사용하여 sliderPosition에 따라 노출 영역을 결정합니다.
+  // 2) Provide a min-height to prevent jumping.
+  // Adjust to match your intended image height if you know it.
+  const slideStyle: React.CSSProperties = {
+    minHeight: "500px", // set your desired min-height
+    position: "relative",
+    width: "100%",
+  };
+
   const renderSlide = (index: number) => (
-    <div className="relative w-full">
-      {/* 배경 타이포그래피 */}
+    <div className="relative w-full h-auto" style={slideStyle}>
+      {/* Background typography */}
       <h1 className="absolute text-[6rem] font-bold opacity-40 select-none p-5 bottom-0">
         VISUALITY AI
       </h1>
-      {/* Before 이미지 */}
+      {/* Before image */}
       <img
         src={imageSets[index].before}
         alt="Before"
-        className="w-full h-auto object-cover"
+        className="w-full h-full object-cover"
       />
-      {/* After 이미지 (clip-path 적용) */}
+      {/* After image */}
       <div
         className="absolute top-0 left-0 w-full h-full overflow-hidden"
         style={{
@@ -120,11 +137,19 @@ export default function BeforeAfterCarousel({ setGridSize }: SliderProps) {
     </div>
   );
 
+  // You can tweak the transition to be more "springy" or alter easing/duration.
+  // For example: transition={{ type: "spring", damping: 20, stiffness: 200 }}
+  // That would give it a more bouncy feel.
+  const transitionConfig = {
+    duration: 1,
+    ease: "easeOut",
+  };
+
   return (
     <div className="flex w-full justify-center my-10">
       <div className="w-full flex flex-col justify-center items-center max-w-5xl">
         <div className="flex justify-center items-center">
-          {/* 이전 슬라이드 버튼 */}
+          {/* Previous slide button */}
           <button
             onClick={handlePrev}
             className="border border-transparent hover:border-white/70 rounded-2xl p-1"
@@ -145,45 +170,53 @@ export default function BeforeAfterCarousel({ setGridSize }: SliderProps) {
             </svg>
           </button>
 
-          {/* 슬라이드 컨테이너 */}
+          {/* Slider container */}
           <motion.div
             ref={containerRef}
             className="relative w-full overflow-hidden select-none m-2 rounded-lg"
           >
-            {/* 이전 슬라이드 (exit 애니메이션) */}
+            {/**
+             * "Exit" animation on the previous slide
+             * Renders only when prevSlide != null, then we animate it out.
+             */}
             {prevSlide !== null && (
               <motion.div
                 initial={{ opacity: 1, x: 0, scale: 1 }}
-                animate={{ opacity: 0, x: -direction * 50, scale: 0.95 }}
-                transition={{ duration: 0.4 }}
+                animate={{ opacity: 0, x: -direction * 30, scale: 0.95 }}
+                transition={transitionConfig}
                 style={{ position: "absolute", width: "100%" }}
               >
                 {renderSlide(prevSlide)}
               </motion.div>
             )}
-            {/* 현재 슬라이드 (enter 애니메이션) */}
+
+            {/**
+             * "Enter" animation on the current slide
+             * We fade/slide it in from the opposite side.
+             */}
             <motion.div
               key={currentSlide}
-              initial={{ opacity: 0, x: direction * 50, scale: 0.95 }}
+              initial={{ opacity: 0, x: direction * 30, scale: 0.95 }}
               animate={{ opacity: 1, x: 0, scale: 1 }}
-              transition={{ duration: 0.4 }}
+              transition={transitionConfig}
               onAnimationComplete={() => setPrevSlide(null)}
               style={{ position: "relative", width: "100%" }}
             >
               {renderSlide(currentSlide)}
             </motion.div>
-            {/* 슬라이더 핸들 (After 이미지 클리핑 조절) */}
+
+            {/* Slider handle */}
             <div
               role="button"
               tabIndex={0}
-              className="absolute top-0 h-full"
+              className="absolute top-0 h-full cursor-ew-resize"
               style={{
                 left: `${sliderPosition}%`,
                 transition: isDragging ? "none" : "left 0.1s ease-out",
               }}
               onMouseDown={handleMouseDown}
             >
-              <div className="w-[4px] h-full flex bg-black/60 hover:bg-black active:bg-black opacity-80 cursor-ew-resize">
+              <div className="w-[4px] h-full flex bg-black/60 hover:bg-black active:bg-black opacity-80">
                 <div className="flex self-center -ml-[22px] text-black/60 hover:text-black active:text-black">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -218,7 +251,7 @@ export default function BeforeAfterCarousel({ setGridSize }: SliderProps) {
             </div>
           </motion.div>
 
-          {/* 다음 슬라이드 버튼 */}
+          {/* Next slide button */}
           <button
             onClick={handleNext}
             className="border border-transparent hover:border-white/70 rounded-2xl p-1 flex justify-center items-center"
