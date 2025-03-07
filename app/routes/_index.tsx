@@ -5,6 +5,7 @@ import FeatureSection from "~/components/FeatureSection";
 import Footer from "~/components/Footer";
 import Header from "~/components/Header";
 import HeroSection from "~/components/HeroSection";
+import InstancesSection from "~/components/InstancesSection";
 
 export default function Index() {
   const [gridSize, setGridSize] = useState(1);
@@ -24,10 +25,10 @@ export default function Index() {
 
       <div className="relative w-full">
         <Header />
-        {/* Before/After 슬라이더 */}
         <HeroSection />
         <BeforeAfterSection setGridSize={setGridSize} />
         <Divider centerText="Instances" />
+        <InstancesSection />
         <Divider centerText="Features section" />
         <FeatureSection />
         <Footer />
