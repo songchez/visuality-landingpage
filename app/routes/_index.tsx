@@ -3,15 +3,15 @@ import BeforeAfterSection from "~/components/BeforeAfterSection";
 import Divider from "~/components/Divider";
 import FeatureSection from "~/components/FeatureSection";
 import Footer from "~/components/Footer";
-import Header from "~/components/Header";
 import HeroSection from "~/components/HeroSection";
 import InstancesSection from "~/components/InstancesSection";
+import ReviewSection from "~/components/ReviewSection";
 
 export default function Index() {
   const [gridSize, setGridSize] = useState(1);
   return (
-    <div className="min-h-screen bg-gray-950 text-gray-400 relative overflow-hidden">
-      <div className="absolute w-screen h-auto overflow-hidden">
+    <div className="h-full w-full">
+      <div className="absolute w-screen h-auto overflow-hidden top-20">
         <img
           src="/images/3d_box_grid.svg"
           alt="grid"
@@ -24,13 +24,13 @@ export default function Index() {
       {/* 컨텐츠 영역 */}
 
       <div className="relative w-full">
-        <Header />
         <HeroSection />
         <BeforeAfterSection setGridSize={setGridSize} />
         <Divider centerText="Instances" />
         <InstancesSection />
         <Divider centerText="Features section" />
         <FeatureSection />
+        <ReviewSection />
         <Footer />
       </div>
     </div>

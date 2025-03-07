@@ -2,7 +2,7 @@ import { Link } from "@remix-run/react";
 
 export default function Footer() {
   return (
-    <footer className="bg-white">
+    <footer>
       <div className="mx-auto max-w-screen-xl px-4 py-16 sm:px-6 lg:px-8">
         <div className="lg:flex lg:items-start lg:gap-8">
           <div className="text-blue-600">
@@ -22,7 +22,7 @@ export default function Footer() {
           <div className="mt-8 grid grid-cols-2 gap-8 lg:mt-0 lg:grid-cols-5 lg:gap-y-16">
             <div className="col-span-2">
               <div>
-                <h2 className="text-2xl font-bold text-gray-900">
+                <h2 className="text-2xl font-bold text-gray-400">
                   Get the latest news!
                 </h2>
 
@@ -40,15 +40,15 @@ export default function Footer() {
                   Email{" "}
                 </label>
 
-                <div className="border border-gray-100 p-2 focus-within:ring-3 sm:flex sm:items-center sm:gap-4">
+                <div className="p-2 focus-within:ring-3 rounded-lg sm:flex sm:items-center sm:gap-4">
                   <input
                     type="email"
                     id="UserEmail"
-                    placeholder="john@rhcp.com"
-                    className="w-full border-none focus:border-transparent focus:ring-transparent sm:text-sm"
+                    placeholder="john@google.com"
+                    className="p-3 border border-gray-500 rounded-lg w-full bg-transparent focus-within::border-none"
                   />
 
-                  <button className="mt-1 w-full bg-blue-500 px-6 py-3 text-sm font-bold tracking-wide text-white uppercase transition-none hover:bg-blue-600 sm:mt-0 sm:w-auto sm:shrink-0">
+                  <button className="text-white mt-1 w-full bg-blue-500 px-6 py-3 text-sm font-bold tracking-wide uppercase transition-none hover:bg-blue-600 sm:mt-0 sm:w-auto sm:shrink-0">
                     Sign Up
                   </button>
                 </div>
@@ -56,13 +56,13 @@ export default function Footer() {
             </div>
 
             <div className="col-span-2 sm:col-span-1">
-              <p className="font-medium text-gray-900">Services</p>
+              <p className="font-medium text-gray-400">Services</p>
 
               <ul className="mt-6 space-y-4 text-sm">
                 <li>
                   <Link
                     to="#"
-                    className="text-gray-700 transition hover:opacity-75"
+                    className="text-gray-300 transition hover:opacity-75"
                   >
                     {" "}
                     1on1 Coaching{" "}
@@ -72,7 +72,7 @@ export default function Footer() {
                 <li>
                   <Link
                     to="#"
-                    className="text-gray-700 transition hover:opacity-75"
+                    className="text-gray-300 transition hover:opacity-75"
                   >
                     {" "}
                     Company Review{" "}
@@ -82,7 +82,7 @@ export default function Footer() {
                 <li>
                   <Link
                     to="#"
-                    className="text-gray-700 transition hover:opacity-75"
+                    className="text-gray-300 transition hover:opacity-75"
                   >
                     {" "}
                     Accounts Review{" "}
@@ -92,7 +92,7 @@ export default function Footer() {
                 <li>
                   <Link
                     to="#"
-                    className="text-gray-700 transition hover:opacity-75"
+                    className="text-gray-300 transition hover:opacity-75"
                   >
                     {" "}
                     HR Consulting{" "}
@@ -102,7 +102,7 @@ export default function Footer() {
                 <li>
                   <Link
                     to="#"
-                    className="text-gray-700 transition hover:opacity-75"
+                    className="text-gray-300 transition hover:opacity-75"
                   >
                     {" "}
                     SEO Optimisation{" "}
@@ -112,13 +112,13 @@ export default function Footer() {
             </div>
 
             <div className="col-span-2 sm:col-span-1">
-              <p className="font-medium text-gray-900">Company</p>
+              <p className="font-medium text-gray-400">Company</p>
 
               <ul className="mt-6 space-y-4 text-sm">
                 <li>
                   <Link
                     to="#"
-                    className="text-gray-700 transition hover:opacity-75"
+                    className="text-gray-300 transition hover:opacity-75"
                   >
                     {" "}
                     About{" "}
@@ -128,7 +128,7 @@ export default function Footer() {
                 <li>
                   <Link
                     to="#"
-                    className="text-gray-700 transition hover:opacity-75"
+                    className="text-gray-300 transition hover:opacity-75"
                   >
                     {" "}
                     Meet the Team{" "}
@@ -138,7 +138,7 @@ export default function Footer() {
                 <li>
                   <Link
                     to="#"
-                    className="text-gray-700 transition hover:opacity-75"
+                    className="text-gray-300 transition hover:opacity-75"
                   >
                     {" "}
                     Accounts Review{" "}
@@ -148,13 +148,13 @@ export default function Footer() {
             </div>
 
             <div className="col-span-2 sm:col-span-1">
-              <p className="font-medium text-gray-900">Helpful Links</p>
+              <p className="font-medium text-gray-400">Helpful Links</p>
 
               <ul className="mt-6 space-y-4 text-sm">
                 <li>
                   <Link
                     to="#"
-                    className="text-gray-700 transition hover:opacity-75"
+                    className="text-gray-300 transition hover:opacity-75"
                   >
                     {" "}
                     Contact{" "}
@@ -164,7 +164,7 @@ export default function Footer() {
                 <li>
                   <Link
                     to="#"
-                    className="text-gray-700 transition hover:opacity-75"
+                    className="text-gray-300 transition hover:opacity-75"
                   >
                     {" "}
                     FAQs{" "}
@@ -174,7 +174,7 @@ export default function Footer() {
                 <li>
                   <Link
                     to="#"
-                    className="text-gray-700 transition hover:opacity-75"
+                    className="text-gray-300 transition hover:opacity-75"
                   >
                     {" "}
                     Live Chat{" "}
@@ -184,13 +184,13 @@ export default function Footer() {
             </div>
 
             <div className="col-span-2 sm:col-span-1">
-              <p className="font-medium text-gray-900">Legal</p>
+              <p className="font-medium text-gray-400">Legal</p>
 
               <ul className="mt-6 space-y-4 text-sm">
                 <li>
                   <Link
                     to="#"
-                    className="text-gray-700 transition hover:opacity-75"
+                    className="text-gray-300 transition hover:opacity-75"
                   >
                     {" "}
                     Accessibility{" "}
@@ -200,7 +200,7 @@ export default function Footer() {
                 <li>
                   <Link
                     to="#"
-                    className="text-gray-700 transition hover:opacity-75"
+                    className="text-gray-300 transition hover:opacity-75"
                   >
                     {" "}
                     Returns Policy{" "}
@@ -210,7 +210,7 @@ export default function Footer() {
                 <li>
                   <Link
                     to="#"
-                    className="text-gray-700 transition hover:opacity-75"
+                    className="text-gray-300 transition hover:opacity-75"
                   >
                     {" "}
                     Refund Policy{" "}
@@ -220,7 +220,7 @@ export default function Footer() {
                 <li>
                   <Link
                     to="#"
-                    className="text-gray-700 transition hover:opacity-75"
+                    className="text-gray-300 transition hover:opacity-75"
                   >
                     Hiring-3 Statistics
                   </Link>
@@ -229,13 +229,13 @@ export default function Footer() {
             </div>
 
             <div className="col-span-2 sm:col-span-1">
-              <p className="font-medium text-gray-900">Downloads</p>
+              <p className="font-medium text-gray-400">Downloads</p>
 
               <ul className="mt-6 space-y-4 text-sm">
                 <li>
                   <Link
                     to="#"
-                    className="text-gray-700 transition hover:opacity-75"
+                    className="text-gray-300 transition hover:opacity-75"
                   >
                     {" "}
                     Marketing Calendar{" "}
@@ -245,7 +245,7 @@ export default function Footer() {
                 <li>
                   <Link
                     to="#"
-                    className="text-gray-700 transition hover:opacity-75"
+                    className="text-gray-300 transition hover:opacity-75"
                   >
                     {" "}
                     SEO Infographics{" "}
@@ -260,7 +260,7 @@ export default function Footer() {
                   to="#"
                   rel="noreferrer"
                   target="_blank"
-                  className="text-gray-700 transition hover:opacity-75"
+                  className="text-gray-300 transition hover:opacity-75"
                 >
                   <span className="sr-only">Facebook</span>
 
@@ -284,7 +284,7 @@ export default function Footer() {
                   to="#"
                   rel="noreferrer"
                   target="_blank"
-                  className="text-gray-700 transition hover:opacity-75"
+                  className="text-gray-300 transition hover:opacity-75"
                 >
                   <span className="sr-only">Instagram</span>
 
@@ -308,7 +308,7 @@ export default function Footer() {
                   to="#"
                   rel="noreferrer"
                   target="_blank"
-                  className="text-gray-700 transition hover:opacity-75"
+                  className="text-gray-300 transition hover:opacity-75"
                 >
                   <span className="sr-only">Twitter</span>
 
@@ -328,7 +328,7 @@ export default function Footer() {
                   to="#"
                   rel="noreferrer"
                   target="_blank"
-                  className="text-gray-700 transition hover:opacity-75"
+                  className="text-gray-300 transition hover:opacity-75"
                 >
                   <span className="sr-only">GitHub</span>
 
@@ -352,7 +352,7 @@ export default function Footer() {
                   to="#"
                   rel="noreferrer"
                   target="_blank"
-                  className="text-gray-700 transition hover:opacity-75"
+                  className="text-gray-300 transition hover:opacity-75"
                 >
                   <span className="sr-only">Dribbble</span>
 
@@ -376,15 +376,15 @@ export default function Footer() {
 
         <div className="mt-8 border-t border-gray-100 pt-8">
           <div className="sm:flex sm:justify-between">
-            <p className="text-xs text-gray-500">
-              &copy; 2022. Company Name. All rights reserved.
+            <p className="text-xs text-gray-400">
+              &copy; 2025. Visuality AI. All rights reserved.
             </p>
 
             <ul className="mt-8 flex flex-wrap justify-start gap-4 text-xs sm:mt-0 lg:justify-end">
               <li>
                 <Link
                   to="#"
-                  className="text-gray-500 transition hover:opacity-75"
+                  className="text-gray-200 transition hover:opacity-75"
                 >
                   {" "}
                   Terms & Conditions{" "}
@@ -394,7 +394,7 @@ export default function Footer() {
               <li>
                 <Link
                   to="#"
-                  className="text-gray-500 transition hover:opacity-75"
+                  className="text-gray-200 transition hover:opacity-75"
                 >
                   {" "}
                   Privacy Policy{" "}
@@ -404,7 +404,7 @@ export default function Footer() {
               <li>
                 <Link
                   to="#"
-                  className="text-gray-500 transition hover:opacity-75"
+                  className="text-gray-200 transition hover:opacity-75"
                 >
                   {" "}
                   Cookies{" "}
