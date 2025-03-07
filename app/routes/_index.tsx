@@ -1,6 +1,5 @@
 import { useState } from "react";
 import BeforeAfterSection from "~/components/BeforeAfterSection";
-import Divider from "~/components/Divider";
 import FeatureSection from "~/components/FeatureSection";
 import Footer from "~/components/Footer";
 import HeroSection from "~/components/HeroSection";
@@ -26,9 +25,7 @@ export default function Index() {
       <div className="relative w-full">
         <HeroSection />
         <BeforeAfterSection setGridSize={setGridSize} />
-        <Divider centerText="Instances" />
         <InstancesSection />
-        <Divider centerText="Features section" />
         <FeatureSection />
         <ReviewSection />
         <Footer />

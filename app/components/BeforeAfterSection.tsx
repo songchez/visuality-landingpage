@@ -146,7 +146,7 @@ export default function BeforeAfterCarousel({ setGridSize }: SliderProps) {
   };
 
   return (
-    <div className="flex w-full justify-center my-10">
+    <section className="flex w-full justify-center mt-20 mb-44">
       <div className="w-full flex flex-col justify-center items-center max-w-5xl">
         <div className="flex justify-center items-center">
           {/* Previous slide button */}
@@ -274,6 +274,6 @@ export default function BeforeAfterCarousel({ setGridSize }: SliderProps) {
           </button>
         </div>
       </div>
-    </div>
+    </section>
   );
 }

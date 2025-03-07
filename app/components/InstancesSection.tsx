@@ -12,7 +12,7 @@ function BuildingCard({ building }: { building: BuildingCardType }) {
   return (
     <Link
       to="#"
-      className="group relative block bg-black w-80 h-72 flex-shrink-0 mx-4"
+      className="group relative block bg-black w-[450px] h-[350px] flex-shrink-0 mx-4"
     >
       <div
         className="absolute inset-0 bg-cover bg-center opacity-75 transition-opacity group-hover:opacity-50"
@@ -78,17 +78,32 @@ export default function InstancesSection() {
   ];
 
   return (
-    <div className="relative flex overflow-x-hidden mt-10 mb-32">
-      <div className="flex whitespace-nowrap animate-marquee">
-        {[...buildingCards, ...buildingCards].map((building, index) => (
-          <BuildingCard key={index} building={building} />
-        ))}
+    <section className="mt-32">
+      <div className="mx-auto max-w-screen-xl px-4 py-32 lg:flex lg:h-screen lg:items-center">
+        <div className="mx-auto max-w-3xl text-center">
+          <h1 className="bg-gradient-to-r from-green-300 via-blue-500 to-purple-600 bg-clip-text text-3xl font-extrabold text-transparent sm:text-5xl">
+            Understand User Flow.
+            <span className="sm:block"> Increase Conversion. </span>
+          </h1>
+
+          <p className="mx-auto mt-4 max-w-xl sm:text-xl/relaxed">
+            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nesciunt
+            illo tenetur fuga ducimus numquam ea!
+          </p>
+        </div>
       </div>
-      <div className="absolute top-0 flex whitespace-nowrap animate-marquee2">
-        {[...buildingCards, ...buildingCards].map((building, index) => (
-          <BuildingCard key={index} building={building} />
-        ))}
+      <div className="relative flex overflow-x-hidden mt-10 mb-32">
+        <div className="flex whitespace-nowrap animate-marquee">
+          {[...buildingCards, ...buildingCards].map((building, index) => (
+            <BuildingCard key={index} building={building} />
+          ))}
+        </div>
+        <div className="absolute top-0 flex whitespace-nowrap animate-marquee2">
+          {[...buildingCards, ...buildingCards].map((building, index) => (
+            <BuildingCard key={index} building={building} />
+          ))}
+        </div>
       </div>
-    </div>
+    </section>
   );
 }
