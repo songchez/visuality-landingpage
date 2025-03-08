@@ -12,7 +12,7 @@ function BuildingCard({ building }: { building: BuildingCardType }) {
   return (
     <Link
       to="#"
-      className="group relative block bg-black w-[450px] h-[350px] flex-shrink-0 mx-4"
+      className="group relative block bg-black md:w-[450px] md:h-[350px] w-60 flex-shrink-0 mx-4"
     >
       <div
         className="absolute inset-0 bg-cover bg-center opacity-75 transition-opacity group-hover:opacity-50"

@@ -99,16 +99,11 @@ export default function BeforeAfterCarousel({ setGridSize }: SliderProps) {
 
   // 2) Provide a min-height to prevent jumping.
   // Adjust to match your intended image height if you know it.
-  const slideStyle: React.CSSProperties = {
-    minHeight: "500px", // set your desired min-height
-    position: "relative",
-    width: "100%",
-  };
 
   const renderSlide = (index: number) => (
-    <div className="relative w-full h-auto" style={slideStyle}>
+    <div className="relative w-full h-auto">
       {/* Background typography */}
-      <h1 className="absolute text-[6rem] font-bold opacity-40 select-none p-5 bottom-0">
+      <h1 className="absolute md:text-[5rem] text-3xl font-bold opacity-40 select-none p-5 bottom-0">
         VISUALITY AI
       </h1>
       {/* Before image */}
@@ -125,7 +120,7 @@ export default function BeforeAfterCarousel({ setGridSize }: SliderProps) {
           transition: isDragging ? "none" : "clip-path 0.1s ease-out",
         }}
       >
-        <h1 className="absolute text-[6rem] font-bold opacity-85 select-none p-5 text-black bottom-0">
+        <h1 className="absolute md:text-[5rem] text-3xl font-bold opacity-85 select-none p-5 text-black bottom-0">
           VISUALITY AI
         </h1>
         <img
