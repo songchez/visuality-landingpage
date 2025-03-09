@@ -1,6 +1,6 @@
 export default function StatSection() {
   return (
-    <div className="mx-auto max-w-screen-xl px-4 py-8 sm:px-6 sm:py-12 lg:px-8 my-32">
+    <section className="mx-auto max-w-screen-xl px-4 py-8 sm:px-6 sm:py-12 lg:px-8 my-32">
       <div className="mx-auto max-w-3xl text-center">
         <h2 className="text-3xl font-bold text-gray-300 sm:text-4xl">
           Trusted by Architectural Design Businesses
@@ -54,6 +54,6 @@ export default function StatSection() {
           </dd>
         </div>
       </dl>
-    </div>
+    </section>
   );
 }

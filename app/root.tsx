@@ -32,8 +32,8 @@ export function Layout({ children }: { children: React.ReactNode }) {
         <Meta />
         <Links />
       </head>
-      <body>
-        <div className="min-h-screen bg-gray-950 text-gray-400 relative overflow-hidden">
+      <body className="bg-gray-950 text-gray-400">
+        <div className="min-h-screen relative overflow-hidden">
           <Header />
           {children}
         </div>
