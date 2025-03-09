@@ -1,10 +1,12 @@
 import { useState } from "react";
 import BeforeAfterSection from "~/components/BeforeAfterSection";
+import CTASection from "~/components/CTASection";
 import FeatureSection from "~/components/FeatureSection";
 import Footer from "~/components/Footer";
 import HeroSection from "~/components/HeroSection";
 import InstancesSection from "~/components/InstancesSection";
 import ReviewSection from "~/components/ReviewSection";
+import StatSection from "~/components/StatSection";
 
 export default function Index() {
   const [gridSize, setGridSize] = useState(1);
@@ -27,7 +29,9 @@ export default function Index() {
         <BeforeAfterSection setGridSize={setGridSize} />
         <InstancesSection />
         <FeatureSection />
+        <StatSection />
         <ReviewSection />
+        <CTASection />
         <Footer />
       </div>
     </div>
