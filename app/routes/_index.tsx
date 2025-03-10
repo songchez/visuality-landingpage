@@ -17,7 +17,7 @@ export default function Index() {
           src="/images/3d_box_grid.svg"
           alt="grid"
           style={{ width: `${Math.max(gridSize, 30)}vw` }}
-          className="opacity-10
+          className="opacity-15
          [mask-image:radial-gradient(circle_at_center,rgba(0,0,0,1)_20%,rgba(0,0,0,0)_100%)] 
          [-webkit-mask-image:radial-gradient(circle_at_center,rgba(0,0,0,1)_20%,rgba(0,0,0,0)_100%)]"
         />

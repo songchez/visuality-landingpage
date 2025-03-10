@@ -141,7 +141,7 @@ export default function BeforeAfterCarousel({ setGridSize }: SliderProps) {
   };
 
   return (
-    <section className="flex w-full justify-center mt-20 mb-44">
+    <section className="flex w-full justify-center mt-20 mb-44 min-h-96">
       <div className="w-full flex flex-col justify-center items-center max-w-5xl">
         <div className="flex justify-center items-center">
           {/* Previous slide button */}
@@ -169,6 +169,7 @@ export default function BeforeAfterCarousel({ setGridSize }: SliderProps) {
           <motion.div
             ref={containerRef}
             className="relative w-full overflow-hidden select-none m-2 rounded-lg"
+            style={{ minHeight: 600 }} // <-- ensure stable height
           >
             {/**
              * "Exit" animation on the previous slide
