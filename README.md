@@ -5,13 +5,18 @@
 
 ## Development
 
-Run the dev server:
+### Run the dev server:
+1. Open **CMD** in the project folder (e.g., `C:\Users\username\Desktop\visuality-landingpage`).
+2. Run the following commands:
 
 ```sh
+npm i
 npm run dev
 ```
 
-To run Wrangler:
+3. Ctrl + Left Click the local address (e.g., ➜ Local: http://localhost:1234/) to open it in your browser.
+
+### To run Wrangler:
 
 ```sh
 npm run build
