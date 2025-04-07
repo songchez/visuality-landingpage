@@ -10,6 +10,7 @@
 2. Run the following commands:
 
 ```sh
+npm i
 npm run dev
 ```
 
