@@ -1,34 +1,22 @@
 export default function HeroSection() {
   return (
-    <div className="w-full flex justify-center my-20">
-      <div className="flex flex-col items-start max-w-xl w-full mx-5 sm:mx-0">
-        <div className="flex">
-          <h1 className="pb-2 text-6xl font-semibold text-white/80">
-            사이트 준비 중
-          </h1>
-        </div>
-      
-        <div className="w-full flex ">
-          <div className="pl-5 pr-5 pb-14 text-2xl font-semibold text-white/60">
-          Comming Soon
-          </div>
-          <div className="pl-5 pr-5 pt-2 text-1xl font-semibold text-white/40">
-          2025.04.07. ~ 
-          </div>
-        </div>
-
-        <div className="pl-5 pb-3 text-2xl font-semibold text-white/80">
-            서비스 문의
-        </div>
-        <ul className="pl-7 pb-3 text-left text-white/70 list-disc list-inside space-y-1">
-          <li className= "pb-2">
-            <strong>E-Mail</strong>: jesuh.yoo@gmail.com
-          </li>
-          <li className= "pb-2">
-            <strong>Mobile</strong>: +82) 10-9619-1204
-          </li>
-        </ul>
-        </div>
+    <div className="w-full flex flex-col sm:m-36 mx-5 my-20">
+      <div className="flex">
+        <div className="w-[30px] h-[1px] bg-white/80 self-end -mr-1 hidden sm:block"></div>
+        <h1 className="text-4xl font-semibold text-left text-white/80">
+          VISUALITY
+        </h1>
       </div>
+      <span className="pt-5 max-w-xl whitespace-pre-wrap">
+        We&apos;re excited to introduce Visuality, a state-of-the-art service
+        designed to revolutionize architectural design. By generative image AIs,
+        it drastically reduces the time spent on the design process, enabling
+        engineers to focus on their core tasks. Moreover, with its advanced
+        reasoning capabilities, high-quality image generation, and visual
+        processing technologies, Visuality offers unfiltered, clear solutions to
+        complex challenges, paving the way for the future of architectural
+        design.
+      </span>
+    </div>
   );
 }
