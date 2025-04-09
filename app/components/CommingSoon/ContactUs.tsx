@@ -18,8 +18,8 @@ export default function ContactUs() {
       </h1>
 
       <p className="text-center text-slate-300 mb-10">
-        Got a technical issue? Want to send feedback about a beta feature? Need
-        details about our Business plan? Let us know.
+        <p>작업 의뢰 또는 서비스 문의를 남겨주시면,</p>
+        <p> 확인 후 연락드리겠습니다.</p>
       </p>
 
       <form onSubmit={handleSubmit}>
