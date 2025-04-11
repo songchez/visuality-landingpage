@@ -1,5 +1,6 @@
 import { useState, useRef, useEffect, useCallback } from "react";
 import * as motion from "motion/react-client";
+import Image from "next/image";
 
 type SliderProps = {
   setGridSize: React.Dispatch<React.SetStateAction<number>>;
@@ -41,16 +42,6 @@ export default function BeforeAfterCarousel({ setGridSize }: SliderProps) {
   const [prevSlide, setPrevSlide] = useState<number | null>(null);
   const [direction, setDirection] = useState(1); // 1 = next, -1 = prev
   const animationFrameRef = useRef<number | null>(null);
-
-  // 1) Preload images on mount.
-  useEffect(() => {
-    imageSets.forEach(({ before, after }) => {
-      [before, after].forEach((src) => {
-        const img = new Image();
-        img.src = src;
-      });
-    });
-  }, []);
 
   const handleMouseDown = () => setIsDragging(true);
   const handleMouseUp = () => setIsDragging(false);
@@ -107,7 +98,7 @@ export default function BeforeAfterCarousel({ setGridSize }: SliderProps) {
         VISUALITY AI
       </h1>
       {/* Before image */}
-      <img
+      <Image
         src={imageSets[index].before}
         alt="Before"
         className="w-full h-full object-cover"
@@ -123,7 +114,7 @@ export default function BeforeAfterCarousel({ setGridSize }: SliderProps) {
         <h1 className="absolute md:text-[5rem] text-3xl font-bold opacity-85 select-none p-5 text-black bottom-0">
           VISUALITY AI
         </h1>
-        <img
+        <Image
           src={imageSets[index].after}
           alt="After"
           className="w-full h-full object-cover object-left"

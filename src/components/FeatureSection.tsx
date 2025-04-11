@@ -74,7 +74,7 @@ export default function FeatureSection() {
           </div>
 
           <div className="md:col-span-3">
-            <img
+            <Image
               src="https://images.unsplash.com/photo-1486718448742-163732cd1544?q=80&w=3087&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
               className="rounded"
               alt=""

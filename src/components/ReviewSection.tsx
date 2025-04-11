@@ -1,3 +1,5 @@
+import Image from "next/image";
+
 // 별 아이콘 목록을 렌더링하는 컴포넌트
 function StarRating() {
   return (
@@ -28,7 +30,7 @@ function ReviewCard({ review: { name, text, image } }: { review: Review }) {
   return (
     <blockquote className="rounded-lg p-6 shadow-xs sm:p-8 bg-gray-50/20">
       <div className="flex items-center gap-4">
-        <img
+        <Image
           alt={name}
           src={image}
           className="size-14 rounded-full object-cover"
