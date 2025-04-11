@@ -4,16 +4,24 @@ interface AlertProps {
   type: "success" | "error"; // 성공 또는 실패
   message: string; // 표시할 메시지
   onClose: () => void; // 닫기 함수
+  isVisible: boolean;
 }
 
-export default function Alert({ type, message, onClose }: AlertProps) {
+export default function Alert({
+  type,
+  message,
+  onClose,
+  isVisible,
+}: AlertProps) {
   const isSuccess = type === "success";
 
   return (
     <div
       role="alert"
-      className={`animate-drop-in fixed top-10 z-10 rounded-md border ${
+      className={`fixed top-10 z-10 shadow-sm rounded-md border ${
         isSuccess ? "border-green-600" : "border-red-600"
+      } ${
+        isVisible ? "animate-drop-in" : "animate-drop-out"
       } bg-gray-800 p-4 shadow-sm`}
     >
       <div className="flex items-start gap-4">

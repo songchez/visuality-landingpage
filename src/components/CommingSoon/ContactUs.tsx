@@ -8,19 +8,30 @@ export default function ContactUs() {
   const [submitStatus, setSubmitStatus] = useState<"success" | "error" | null>(
     null
   );
+  const [isVisible, setIsVisible] = useState(false);
   const [submitMessage, setSubmitMessage] = useState("");
   const formRef = useRef<HTMLFormElement>(null);
 
+  // 제출 상태 변경 시 애니메이션 관리
   useEffect(() => {
     if (submitStatus) {
+      setIsVisible(true);
       const timer = setTimeout(() => {
-        setSubmitStatus(null); // 3초 후 상태를 null로 설정하여 경고 숨김
+        setIsVisible(false);
       }, 3000);
-
-      // 클린업: 컴포넌트 언마운트 또는 submitStatus 변경 시 타이머 제거
       return () => clearTimeout(timer);
     }
   }, [submitStatus]);
+
+  // 사라짐 애니메이션 완료 후 상태 초기화
+  useEffect(() => {
+    if (!isVisible && submitStatus) {
+      const timer = setTimeout(() => {
+        setSubmitStatus(null);
+      }, 500);
+      return () => clearTimeout(timer);
+    }
+  }, [isVisible, submitStatus]);
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -69,7 +80,8 @@ export default function ContactUs() {
           <Alert
             type={submitStatus}
             message={submitMessage}
-            onClose={() => setSubmitStatus(null)}
+            onClose={() => setIsVisible(false)}
+            isVisible={isVisible}
           />
         )}
 
