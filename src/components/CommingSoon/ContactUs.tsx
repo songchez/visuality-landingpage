@@ -1,20 +1,79 @@
 "use client";
 
+import { useState, useRef, useEffect } from "react";
+import Alert from "@/components/Alert";
+
 export default function ContactUs() {
-  // 폼 제출 핸들러 (기능 제거 후 콘솔 출력만 남김)
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitStatus, setSubmitStatus] = useState<"success" | "error" | null>(
+    null
+  );
+  const [submitMessage, setSubmitMessage] = useState("");
+  const formRef = useRef<HTMLFormElement>(null);
+
+  useEffect(() => {
+    if (submitStatus) {
+      const timer = setTimeout(() => {
+        setSubmitStatus(null); // 3초 후 상태를 null로 설정하여 경고 숨김
+      }, 3000);
+
+      // 클린업: 컴포넌트 언마운트 또는 submitStatus 변경 시 타이머 제거
+      return () => clearTimeout(timer);
+    }
+  }, [submitStatus]);
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    setIsSubmitting(true);
+    setSubmitMessage("");
+    setSubmitStatus(null); // 제출 시작 시 상태 초기화
+
     const formData = new FormData(e.currentTarget);
     const email = formData.get("email") as string;
     const subject = formData.get("subject") as string;
     const message = formData.get("message") as string;
-    console.log("폼 데이터:", { email, subject, message });
+
+    try {
+      const response = await fetch("/api/contact-us", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ email, subject, message }),
+      });
+
+      if (response.ok) {
+        setSubmitStatus("success");
+        setSubmitMessage("폼이 성공적으로 제출되었습니다!");
+        if (formRef.current) {
+          formRef.current.reset(); // 폼 초기화
+        }
+      } else {
+        setSubmitStatus("error");
+        setSubmitMessage("폼 제출에 실패했습니다. 다시 시도해주세요.");
+      }
+    } catch (error) {
+      console.error("폼 제출 오류:", error);
+      setSubmitStatus("error");
+      setSubmitMessage("폼 제출 중 오류가 발생했습니다.");
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
     <div className="flex w-full justify-center items-center text-white py-20">
       <div className="container mx-auto flex flex-col justify-center items-center w-full max-w-7xl gap-44 px-6">
-        {/* 1. 연락처 - 프리미엄 디자인 */}
+        {/* Alert 컴포넌트 표시 */}
+        {submitStatus && (
+          <Alert
+            type={submitStatus}
+            message={submitMessage}
+            onClose={() => setSubmitStatus(null)}
+          />
+        )}
+
+        {/* 1. 연락처 섹션 */}
         <div className="w-full lg:w-1/2 flex flex-col justify-center">
           <div className="relative">
             <div className="absolute -top-10 -left-10 w-20 h-20 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full opacity-50 blur-xl"></div>
@@ -139,7 +198,7 @@ export default function ContactUs() {
               Need details about our Business plan? Let us know.
             </p>
 
-            <form onSubmit={handleSubmit}>
+            <form onSubmit={handleSubmit} ref={formRef}>
               <div className="mb-6">
                 <label
                   htmlFor="email"
@@ -193,25 +252,30 @@ export default function ContactUs() {
 
               <button
                 type="submit"
-                className="relative overflow-hidden group text-white bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 focus:ring-4 focus:ring-blue-800 font-medium rounded-lg text-sm px-6 py-4 w-full transition-all duration-300"
+                disabled={isSubmitting}
+                className={`relative overflow-hidden group text-white bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 focus:ring-4 focus:ring-blue-800 font-medium rounded-lg text-sm px-6 py-4 w-full transition-all duration-300 ${
+                  isSubmitting ? "opacity-50 cursor-not-allowed" : ""
+                }`}
               >
                 <span className="absolute top-0 left-0 w-full h-full bg-white/10 scale-x-0 group-hover:scale-x-100 transition-transform origin-left duration-500"></span>
                 <span className="relative flex items-center justify-center">
-                  Send message
-                  <svg
-                    className="w-5 h-5 ml-2"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth="2"
-                      d="M14 5l7 7m0 0l-7 7m7-7H3"
-                    ></path>
-                  </svg>
+                  {isSubmitting ? "제출 중..." : "Send message"}
+                  {!isSubmitting && (
+                    <svg
+                      className="w-5 h-5 ml-2"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth="2"
+                        d="M14 5l7 7m0 0l-7 7m7-7H3"
+                      ></path>
+                    </svg>
+                  )}
                 </span>
               </button>
             </form>
