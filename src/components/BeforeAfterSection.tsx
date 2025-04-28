@@ -1,10 +1,12 @@
+"use client";
 import { useState, useRef, useEffect, useCallback } from "react";
 import * as motion from "motion/react-client";
 import Image from "next/image";
 
-type SliderProps = {
-  setGridSize: React.Dispatch<React.SetStateAction<number>>;
-};
+// setGridSize는 뒤에 그리드의 사이즈를 조절해주는 기능을 위해 있는것.
+// type SliderProps = {
+//   setGridSize: React.Dispatch<React.SetStateAction<number>>;
+// };
 
 type ImageSet = {
   before: string;
@@ -13,28 +15,29 @@ type ImageSet = {
 
 const imageSets: ImageSet[] = [
   {
-    before: "images/beforeAfters/before1.webp",
-    after: "images/beforeAfters/after1.webp",
+    before: "/images/beforeAfters/before1.webp",
+    after: "/images/beforeAfters/after1.webp",
   },
   {
-    before: "images/beforeAfters/before2.webp",
-    after: "images/beforeAfters/after2.webp",
+    before: "/images/beforeAfters/before2.webp",
+    after: "/images/beforeAfters/after2.webp",
   },
   {
-    before: "images/beforeAfters/before3.webp",
-    after: "images/beforeAfters/after3.webp",
+    before: "/images/beforeAfters/before3.webp",
+    after: "/images/beforeAfters/after3.webp",
   },
   {
-    before: "images/beforeAfters/before4.webp",
-    after: "images/beforeAfters/after4.webp",
+    before: "/images/beforeAfters/before4.webp",
+    after: "/images/beforeAfters/after4.webp",
   },
   {
-    before: "images/beforeAfters/before5.webp",
-    after: "images/beforeAfters/after5.webp",
+    before: "/images/beforeAfters/before5.webp",
+    after: "/images/beforeAfters/after5.webp",
   },
 ];
 
-export default function BeforeAfterCarousel({ setGridSize }: SliderProps) {
+// export default function BeforeAfterCarousel({ setGridSize }: SliderProps) {
+export default function BeforeAfterCarousel() {
   const containerRef = useRef<HTMLDivElement>(null);
   const [sliderPosition, setSliderPosition] = useState(50);
   const [isDragging, setIsDragging] = useState(false);
@@ -68,11 +71,11 @@ export default function BeforeAfterCarousel({ setGridSize }: SliderProps) {
       window.removeEventListener("mouseup", handleMouseUp);
     }
     return () => {
-      setGridSize(sliderPosition);
+      // setGridSize(sliderPosition);
       window.removeEventListener("mousemove", handleMouseMove);
       window.removeEventListener("mouseup", handleMouseUp);
     };
-  }, [handleMouseMove, isDragging, setGridSize, sliderPosition]);
+  }, [handleMouseMove, isDragging, sliderPosition]);
 
   const handlePrev = () => {
     setDirection(-1);
@@ -92,14 +95,12 @@ export default function BeforeAfterCarousel({ setGridSize }: SliderProps) {
   // Adjust to match your intended image height if you know it.
 
   const renderSlide = (index: number) => (
-    <div className="relative w-full h-auto">
-      {/* Background typography */}
-      <h1 className="absolute md:text-[5rem] text-3xl font-bold opacity-40 select-none p-5 bottom-0">
-        VISUALITY AI
-      </h1>
+    <div className="relative w-full h-full">
       {/* Before image */}
       <Image
         src={imageSets[index].before}
+        width={1980}
+        height={1080}
         alt="Before"
         className="w-full h-full object-cover"
       />
@@ -116,6 +117,8 @@ export default function BeforeAfterCarousel({ setGridSize }: SliderProps) {
         </h1>
         <Image
           src={imageSets[index].after}
+          width={1980}
+          height={1080}
           alt="After"
           className="w-full h-full object-cover object-left"
         />

@@ -1,4 +1,5 @@
 import ContactUs from "./ContactUs";
+import ExampleSection from "./ExampleSection";
 import WeaverIntro from "./WeaverIntro"; // 추가
 
 export default function CommingSoon() {
@@ -7,6 +8,7 @@ export default function CommingSoon() {
       {/* 실제 콘텐츠 영역 */}
       {/* WeaverIntro 컴포넌트를 아래쪽에 삽입 */}
       <WeaverIntro />
+      <ExampleSection />
       <div className="flex w-full justify-center gap-10">
         {/* 우측: ContactUs */}
         <div className="w-full">
