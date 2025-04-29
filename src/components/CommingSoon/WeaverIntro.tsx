@@ -50,7 +50,7 @@ export default function WeaverIntro() {
           </div>
         </div>
         <div className="shadow-xl shadow-violet-900 m-5 md:m-0 overflow-hidden rounded-lg border-1 border-violet-400">
-          <video controls autoPlay muted loop width="512">
+          <video controls autoPlay muted loop width="512" preload="auto">
             <source src="/videos/langding-main-video.mp4" type="video/mp4" />
             Your browser does not support the video tag.
           </video>
