@@ -5,18 +5,18 @@ import Divider from "../Divider";
 export default function WeaverIntro() {
   return (
     <section className="z-10 flex flex-col justify-center items-center">
-      <div className="absolute w-screen h-auto left-1/4">
+      <div className="absolute w-screen h-auto top-20">
         <Image
           src="/images/3d_box_grid.svg"
           alt="grid"
-          width={Math.max(0.9, 30)}
+          width={Math.max(0.9, 600)}
           height={200}
           className="opacity-10
          [mask-image:radial-gradient(circle_at_center,rgba(0,0,0,1)_20%,rgba(0,0,0,0)_100%)] 
          [-webkit-mask-image:radial-gradient(circle_at_center,rgba(0,0,0,1)_20%,rgba(0,0,0,0)_100%)]"
         />
       </div>
-      <div className="min-h-screen flex justify-center items-center">
+      <div className="my-40 flex flex-col md:flex-row justify-center items-center gap-20">
         <div>
           <div className="max-w-screen-xl px-4 lg:flex lg:items-center">
             <div className="max-w-3xl text-center">
@@ -49,14 +49,28 @@ export default function WeaverIntro() {
             <p className="text-lg font-mono">2025.04.07. ~ 2025.05.20(예정)</p>
           </div>
         </div>
+        <div className="shadow-xl shadow-violet-900 m-5 md:m-0 overflow-hidden rounded-lg border-1 border-violet-400">
+          <video controls autoPlay muted loop width="512">
+            <source src="/videos/landing_video_1.mp4" type="video/mp4" />
+            Your browser does not support the video tag.
+          </video>
+        </div>
       </div>
-      <div className="grid grid-cols-2 gap-5 justify-center items-center m-10">
+      <div className="grid md:grid-cols-3 grid-cols-2 gap-5 justify-center items-center m-10">
         <video controls autoPlay muted loop width="400">
           <source src="/videos/landing_video_1.mp4" type="video/mp4" />
           Your browser does not support the video tag.
         </video>
         <video controls autoPlay muted loop width="400">
           <source src="/videos/landing_video_2.mp4" type="video/mp4" />
+          Your browser does not support the video tag.
+        </video>
+        <video controls autoPlay muted loop width="400">
+          <source src="/videos/landing_video_2.mp4" type="video/mp4" />
+          Your browser does not support the video tag.
+        </video>
+        <video controls autoPlay muted loop width="400">
+          <source src="/videos/landing_video_1.mp4" type="video/mp4" />
           Your browser does not support the video tag.
         </video>
         <video controls autoPlay muted loop width="400">
