@@ -123,7 +123,7 @@ export default function ImageComparison() {
         >
           <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-white rounded-full w-8 h-8 flex items-center justify-center">
             <svg
-              className="w-4 h-4 text-gray-800"
+              className="w-5 h-5 text-gray-800"
               fill="none"
               stroke="currentColor"
               viewBox="0 0 24 24"

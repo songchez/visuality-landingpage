@@ -21,11 +21,13 @@ export default function WeaverIntro() {
           <div className="max-w-screen-xl px-4 lg:flex lg:items-center">
             <div className="max-w-3xl text-center">
               <h1 className="bg-gradient-to-r from-green-300 via-blue-500 to-purple-600 bg-clip-text text-3xl font-extrabold text-transparent sm:text-5xl">
-                <p className="pl-2 pb-1 text-2xl sm:block text-left">
+                <p className="pl-2 pb-1 md:text-2xl text-lg sm:block text-left">
                   Visualize your Vision.
                 </p>
-                <p className="pb-1 text-7xl sm:block text-center">The Weaver</p>
-                <p className="pb-3 text-2xl sm:block text-right">
+                <p className="pb-1 md:text-7xl text-5xl sm:block text-center">
+                  The Weaver
+                </p>
+                <p className="pb-3 md:text-2xl text-lg sm:block text-right">
                   Supports Reality.
                 </p>
               </h1>
@@ -41,12 +43,15 @@ export default function WeaverIntro() {
                 width={40}
                 height={40}
                 alt="block animation"
+                className="md:w-[40px] w-6"
               />
-              <h1 className="text-4xl font-semibold text-white">
+              <h1 className="md:text-4xl text-xl font-semibold text-white">
                 Comming Soon
               </h1>
             </div>
-            <p className="text-lg font-mono">2025.04.07. ~ 2025.05.20(예정)</p>
+            <p className="md:text-lg text-sm font-mono">
+              2025.04.07. ~ 2025.05.20(예정)
+            </p>
           </div>
         </div>
         <div className="shadow-xl shadow-violet-900 m-5 md:m-0 overflow-hidden rounded-lg border-1 border-violet-400">
@@ -56,7 +61,7 @@ export default function WeaverIntro() {
           </video>
         </div>
       </div>
-      <div className="grid md:grid-cols-3 grid-cols-2 gap-5 justify-center items-center m-10">
+      <div className="grid md:grid-cols-3 grid-cols-2 md:gap-5 gap-2 justify-center items-center md:m-10 m-1">
         <video controls autoPlay muted loop width="400">
           <source src="/videos/landing_video_1.mp4" type="video/mp4" />
           Your browser does not support the video tag.
