@@ -78,7 +78,7 @@ export default function WeaverIntro() {
           Your browser does not support the video tag.
         </video>
         <video controls autoPlay muted loop width="400">
-          <source src="/videos/landing_video_1.mp4" type="video/mp4" />
+          <source src="/videos/landing-video-6.mp4" type="video/mp4" />
           Your browser does not support the video tag.
         </video>
       </div>
