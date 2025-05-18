@@ -7,7 +7,7 @@ export default function Header() {
       <div className="mx-auto flex h-16 max-w-screen-xl items-center gap-8 px-4 sm:px-6 lg:px-8">
         <Link className="block text-blue-700" href="/">
           <span className="sr-only">Home</span>
-          <Image src="/images/Logo.svg" alt="logo" />
+          <Image src="/images/Logo.svg" alt="logo" width={100} height={100} />
         </Link>
 
         <div className="flex flex-1 items-center justify-end md:justify-between">
