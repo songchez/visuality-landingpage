@@ -31,6 +31,8 @@ function ReviewCard({ review: { name, text, image } }: { review: Review }) {
     <blockquote className="rounded-lg p-6 shadow-xs sm:p-8 bg-gray-50/20">
       <div className="flex items-center gap-4">
         <Image
+          width={512}
+          height={512}
           alt={name}
           src={image}
           className="size-14 rounded-full object-cover"

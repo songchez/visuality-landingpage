@@ -1,4 +1,10 @@
+import BeforeAfterCarousel from "@/components/BeforeAfterSection";
+import CTASection from "@/components/CTASection";
+import FeatureSection from "@/components/FeatureSection";
 import HeroSection from "@/components/HeroSection";
+import InstancesSection from "@/components/InstancesSection";
+import ReviewSection from "@/components/ReviewSection";
+import StatSection from "@/components/StatSection";
 import Image from "next/image";
 
 export default function Home() {
@@ -16,6 +22,12 @@ export default function Home() {
         />
       </div>
       <HeroSection />
+      <BeforeAfterCarousel />
+      <FeatureSection />
+      <CTASection />
+      <InstancesSection />
+      <ReviewSection />
+      <StatSection />
     </div>
   );
 }
