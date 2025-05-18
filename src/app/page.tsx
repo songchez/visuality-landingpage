@@ -1,10 +1,10 @@
-import BeforeAfterCarousel from "@/components/BeforeAfterSection";
-import CTASection from "@/components/CTASection";
-import FeatureSection from "@/components/FeatureSection";
-import HeroSection from "@/components/HeroSection";
-import InstancesSection from "@/components/InstancesSection";
-import ReviewSection from "@/components/ReviewSection";
-import StatSection from "@/components/StatSection";
+import BeforeAfterCarousel from "@/components/Home/BeforeAfterSection";
+import CTASection from "@/components/Home/CTASection";
+import FeatureSection from "@/components/Home/FeatureSection";
+import HeroSection from "@/components/Home/HeroSection";
+import InstancesSection from "@/components/Home/InstancesSection";
+import ReviewSection from "@/components/Home/ReviewSection";
+import StatSection from "@/components/Home/StatSection";
 import Image from "next/image";
 
 export default function Home() {

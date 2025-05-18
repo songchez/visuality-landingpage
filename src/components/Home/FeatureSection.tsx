@@ -1,5 +1,5 @@
 import Image from "next/image";
-import Divider from "./Divider";
+import Divider from "../Layout/Divider";
 
 export default function FeatureSection() {
   return (
