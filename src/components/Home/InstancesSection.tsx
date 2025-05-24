@@ -12,7 +12,7 @@ function BuildingCard({ building }: { building: BuildingCardType }) {
   return (
     <Link
       href="#"
-      className="group relative block bg-black md:w-[450px] md:h-[350px] w-60 flex-shrink-0 mx-4"
+      className="group relative block bg-black md:w-[450px] md:h-[350px] w-60 flex-shrink-0 mx-4 marquee-content"
     >
       <div
         className="absolute inset-0 bg-cover bg-center opacity-75 transition-opacity group-hover:opacity-50"
@@ -114,12 +114,7 @@ export default function InstancesSection() {
         </div>
       </div>
       <div className="relative flex overflow-x-hidden mt-10 mb-32">
-        <div className="flex whitespace-nowrap animate-marquee">
-          {[...buildingCards, ...buildingCards].map((building, index) => (
-            <BuildingCard key={index} building={building} />
-          ))}
-        </div>
-        <div className="absolute top-0 flex whitespace-nowrap animate-marquee2">
+        <div className="flex whitespace-nowrap marquee">
           {[...buildingCards, ...buildingCards].map((building, index) => (
             <BuildingCard key={index} building={building} />
           ))}

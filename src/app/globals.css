@@ -29,4 +29,20 @@
       opacity: 0;
     }
   }
+  .marquee {
+    @apply whitespace-nowrap overflow-hidden;
+  }
+
+  .marquee-content {
+    animation: marquee-left 50s linear infinite;
+  }
+
+  @keyframes marquee-left {
+    0% {
+      transform: translateX(0%);
+    }
+    100% {
+      transform: translateX(-800%);
+    }
+  }
 }
