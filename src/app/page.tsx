@@ -1,4 +1,4 @@
-import BeforeAfterCarousel from "@/components/Home/BeforeAfterSection";
+// import BeforeAfterCarousel from "@/components/Home/BeforeAfterSection";
 import CTASection from "@/components/Home/CTASection";
 import FeatureSection from "@/components/Home/FeatureSection";
 import HeroSection from "@/components/Home/HeroSection";
@@ -22,7 +22,7 @@ export default function Home() {
         />
       </div>
       <HeroSection />
-      <BeforeAfterCarousel />
+      {/* <BeforeAfterCarousel /> */}
       <FeatureSection />
       <CTASection />
       <InstancesSection />

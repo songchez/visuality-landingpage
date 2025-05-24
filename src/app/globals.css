@@ -34,7 +34,7 @@
   }
 
   .marquee-content {
-    animation: marquee-left 50s linear infinite;
+    animation: marquee-left 180s linear infinite;
   }
 
   @keyframes marquee-left {
